@@ -1,0 +1,49 @@
+Employee-PayRoll-Service
+
+uc1
+Ability to create payroll service databases
+
+create database employee_payroll_service;
+show databases;
+use employee_payroll_service;
+
+uc2
+Ability to create employee payroll table.
+
+CREATE TABLE Employee_Payroll(Columns_id int auto_increment primary key,Name varchar(8),Salary int,Start_Date date);
+
+
+uc3
+Ability to insert data into table
+
+INSERT INTO Employee_Payroll(Name,Salary,Start_Date) values('Ankita','28000','2021-04-10'), ('Komal','30000','2021-03-15'),('Manish','22000','2021-02-21');
+
+uc4
+ability to retrive all the employee_payroll data
+
+select * from employee_payroll;
+
+uc5
+ability to retrive salary data for particular employee as well as employee who have joined in particular data range .
+
+select Salary from employee_payroll where name="Ankita";
+
+select Name ,Salary from employee_payroll where Start_Date between cast('2021-02-12'AS date) and cast('2021-04-10' as date);
+
+uc6
+ability to add gender to employee_payroll table and update row to reflect the correct employee gender
+
+alter table employee_payroll add column Gender varchar(1) after Name;
+
+update employee_payroll set Gender = 'M' where Name='Manish'; 
+
+update employee_payroll set Gender = 'F' where Name='Ankita' or Name='Komal'; 
+
+uc7
+ability to find sum ,avg,min,max,and number of male and female employees
+
+select sum(Salary) from employee_payroll where Gender = 'F' group by Gender;
+select avg(Salary) from employee_payroll where Gender = 'F' group by Gender;
+select Gender,count(Name) from employee_payroll group by Gender;
+select min(Salary) from employee_payroll; 
+select Name, max(Salary) from employee_payroll; 
